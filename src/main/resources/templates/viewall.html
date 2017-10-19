@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>View All Students</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#table').DataTable();
+	});
+</script>
+</head>
+<body>
+	<div th:replace="fragments/fragment :: header"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<center>
+					<h1 style="margin-top: 30px">All Students</h1>
+				</center>
+
+				<!-- <a th:href="'/student/delete/' + ${student.npm}"> Delete Data </a><br />
+		<a th:href="'/student/update/' + ${student.npm}"> Update Data </a><br />
+		<h3 th:text="'No. ' + ${iterationStatus.count}">No. 1</h3>
+		<h3 th:text="'NPM = ' + ${student.npm}">Student NPM</h3>
+		<h3 th:text="'Name = ' + ${student.name}">Student Name</h3>
+		<h3 th:text="'GPA = ' + ${student.gpa}">Student GPA</h3>
+		<h3 th:if="${student.gpa>=3.49}">Cum Laude!</h3>
+		<h3 th:unless="${student.gpa<=3.49}">Sangat Memuaskan!</h3>
+		<h3>Kuliah yang diambil</h3>
+		<ul th:each="course,iterationStatus: ${student.courses}">
+			<li th:text="${course.name} + '-' + ${course.credits} + ' sks'">
+				Nama kuliah - X SKS</li>
+		</ul>
+		<hr />  -->
+
+				<table id="table" class="display">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>NPM</th>
+							<th>Name</th>
+							<th>GPA</th>
+							<th>Cum laude</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="student,iterationStatus: ${students}"
+							th:class="${iterationStatus.odd}">
+							<td th:text="${iterationStatus.count}">No. 1</td>
+							<td th:text="${student.npm}">Student NPM</td>
+							<td th:text="${student.name}">Student Name</td>
+							<td th:text="${student.gpa}">Student GPA</td>
+							<td th:if="${student.gpa >= 3.49}">Ya</td>
+							<td th:unless="${student.gpa>=3.49}">Tidak</td>
+							<td><a th:href="'/student/update/' + ${student.npm}">Update
+									Data</a></td>
+							<td><a th:href="'/student/delete/' + ${student.npm}">Delete
+									Data</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+</body>
+</html>
